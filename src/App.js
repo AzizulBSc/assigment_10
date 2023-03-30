@@ -1,4 +1,7 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import PrivateRoute from "./components/PrivateRoute";
+import PublicRoute from "./components/PublicRoute";
+import useAuthCheck from "./hooks/useAuthCheck";
 import AdminLogin from "./pages/admin/AdminLogin";
 import Assignment from "./pages/admin/Assignment";
 import AssignmentMark from "./pages/admin/AssignmentMark";
@@ -11,17 +14,19 @@ import Quiz from "./pages/student/Quiz";
 import StudentLogin from "./pages/student/StudentLogin";
 import StudentRegistration from "./pages/student/StudentRegistration";
 
-function App() {
-  return (
-    <Router>
+function App() {  const authChecked = useAuthCheck();
+
+  return !authChecked ? (
+      <div>Checking authentication....</div>
+  ) : (<Router>
       <Routes>
         
         {/* student route start */}
-        <Route path="/" element={ <StudentLogin/>}/>
-        <Route path="/student/add" element={ <StudentRegistration/>}/>
-        <Route path="/student/player" element={ <CoursePlayer/>}/>
-        <Route path="/student/leaderboard" element={ <Leaderboard/>}/>
-        <Route path="/student/quiz" element={ <Quiz/>}/>
+        <Route path="/" element={ <PublicRoute><StudentLogin/></PublicRoute> }/>
+        <Route path="/student/add" element={ <PublicRoute><StudentRegistration/></PublicRoute>}/>
+        <Route path="/student/player" element={ <PrivateRoute><CoursePlayer/></PrivateRoute>}/>
+        <Route path="/student/leaderboard" element={ <PrivateRoute><Leaderboard/></PrivateRoute>}/>
+        <Route path="/student/quiz" element={ <PrivateRoute><Quiz/></PrivateRoute>}/>
         {/* student route end */}
 
         {/* admin route start */}
