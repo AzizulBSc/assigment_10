@@ -1,6 +1,36 @@
-import React from 'react'
-import portalogo from "../../assets/image/learningportal.svg"
+import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import portalogo from "../../assets/image/learningportal.svg";
+import { useLoginMutation } from '../../features/auth/authApi';
 export default function AdminLogin() {
+    const [email, setEmail] = useState("");
+    const [password, setPassword] = useState("");
+    const [error, setError] = useState("");
+
+    const [login, { data, isLoading, error: responseError }] =
+        useLoginMutation();
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (responseError?.data) {
+            setError(responseError.data);
+        }
+        if (data?.accessToken && data?.user) {
+            navigate("/student/player");
+        }
+    }, [data, responseError, navigate]);
+
+    const handleSubmit = (e) => {
+        e.preventDefault();
+
+        setError("");
+        login({
+            email,
+            password,
+        });
+    };
+
   return (
 <>
     <section className="py-6 bg-primary h-screen grid place-items-center">
@@ -11,18 +41,19 @@ export default function AdminLogin() {
                     Sign in to Admin Account
                 </h2>
             </div>
-            <form className="mt-8 space-y-6" action="#" method="POST">
+            <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
                 <input type="hidden" name="remember" value="true" />
                 <div className="rounded-md shadow-sm -space-y-px">
                     <div>
                         <label for="email-address" className="sr-only">Email address</label>
                         <input id="email-address" name="email" type="email" autocomplete="email" required
-                            className="login-input rounded-t-md" placeholder="Email address" />
+                            className="login-input rounded-t-md" placeholder="Email address" value={email}
+                            onChange={(e) => setEmail(e.target.value)} />
                     </div>
                     <div>
                         <label for="password" className="sr-only">Password</label>
                         <input id="password" name="password" type="password" autocomplete="current-password" required
-                            className="login-input rounded-b-md" placeholder="Password" />
+                            className="login-input rounded-b-md" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)}/>
                     </div>
                 </div>
 
@@ -40,6 +71,7 @@ export default function AdminLogin() {
                         Sign in
                     </button>
                 </div>
+                {error !== "" && <div>{error}</div>}
             </form>
         </div>
     </section>

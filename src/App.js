@@ -30,12 +30,12 @@ function App() {  const authChecked = useAuthCheck();
         {/* student route end */}
 
         {/* admin route start */}
-        <Route path="/admin/login" element={ <AdminLogin/>}/>
-        <Route path="/admin/assignment" element={ <Assignment/>}/>
-        <Route path="/admin/assignment/mark" element={ <AssignmentMark/>}/>
-        <Route path="/admin/dashboard" element={ <Dashboard/>}/>
-        <Route path="/admin/quizzes" element={ <Quizzes/>}/>
-        <Route path="/admin/videos" element={ <Videos/>}/>
+        <Route path="/admin/login" element={ <PublicRoute><AdminLogin/></PublicRoute>}/>
+        <Route path="/admin/assignment" element={ <PrivateRoute><Assignment/></PrivateRoute>}/>
+        <Route path="/admin/assignment/mark" element={ <PrivateRoute><AssignmentMark/></PrivateRoute>}/>
+        <Route path="/admin/dashboard" element={ <PrivateRoute><Dashboard/></PrivateRoute>}/>
+        <Route path="/admin/quizzes" element={ <PrivateRoute><Quizzes/></PrivateRoute>}/>
+        <Route path="/admin/videos" element={ <PrivateRoute><Videos/></PrivateRoute>}/>
         {/* admin route End */}
        
     </Routes>

@@ -8,6 +8,6 @@ export const apiSlice = createApi({
         let result = await baseQuery(args,api,extraOptions);
         return result;
     },
-    tagTypes:[],
+    // tagTypes:["Videos"],
     endpoints:(builder)=>({}),
 });
