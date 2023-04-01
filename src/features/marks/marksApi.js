@@ -4,6 +4,14 @@ export const marks = apiSlice.injectEndpoints({
         getMarks:builder.query({
             query:()=>"/assignmentMark",
         }),
+        deleteMark:builder.mutation({
+            query: (id) => ({
+                url: `/assignmentMark/${id}`,
+                method: "DELETE",
+            }),
+            // invalidatesTags:["Videos"]
+
+        }),
     }),
 });
-export const {useGetMarksQuery} = marks;
+export const {useGetMarksQuery,useDeleteMarkMutation} = marks;

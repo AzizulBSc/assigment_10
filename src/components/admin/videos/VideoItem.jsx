@@ -1,14 +1,15 @@
 import React from 'react';
 import { useDeleteVideoMutation } from '../../../features/videos/videosApi';
+import {useNavigate} from "react-router-dom";
 
 function VideoItem(video) {
     const {title,description,id} = video.video;
-    
+    const  navigate = useNavigate();
    const [deleteVideoMutation, { loading, error, data }] = useDeleteVideoMutation();
     const handleDelete = () =>{
         deleteVideoMutation(id);
         alert("Delete Successfully");
-        window.location.href = "/admin/videos";
+        navigate("/admin/videos");
           }
     return (
         <tr key={video.id}>

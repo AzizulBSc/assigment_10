@@ -4,6 +4,13 @@ export const quizzes = apiSlice.injectEndpoints({
         getQuizzes:builder.query({
             query:()=>"/quizzes",
         }),
+        deleteQuizze:builder.mutation({
+            query: (id) => ({
+                url: `/quizzes/${id}`,
+                method: "DELETE",
+            }),
+
+        }),
     }),
 });
-export const {useGetQuizzesQuery} = quizzes;
+export const {useGetQuizzesQuery,useDeleteQuizzeMutation} = quizzes;

@@ -4,6 +4,13 @@ export const assignments = apiSlice.injectEndpoints({
         getAssignments:builder.query({
             query:()=>"/assignments",
         }),
+        deleteAssignment:builder.mutation({
+            query: (id) => ({
+                url: `/assignments/${id}`,
+                method: "DELETE",
+            }),
+
+        }),
     }),
 });
-export const {useGetAssignmentsQuery} = assignments;
+export const {useGetAssignmentsQuery,useDeleteAssignmentMutation} = assignments;

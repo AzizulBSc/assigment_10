@@ -3,6 +3,7 @@ import React from 'react';
 function AssMarkItem(mark) {
     console.log(mark.mark);
     const {student_name,title,totalMark,repo_link,status,createdAt} = mark.mark;
+
     return (
         <tr>
             <td className="table-td">{title}</td>
