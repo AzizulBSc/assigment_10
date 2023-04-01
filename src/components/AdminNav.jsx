@@ -2,7 +2,15 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 
 import portalogo from "../assets/image/learningportal.svg";
+import {useDispatch} from "react-redux";
+import {userLoggedOut} from "../features/auth/authSlice";
 export default function AdminNav() {
+    const dispatch = useDispatch();
+    const logOut = ()=>{
+        dispatch(userLoggedOut());
+        localStorage.clear();
+        alert("Log Out Successfully!");
+    }
   return (
     <nav class="shadow-md">
     <div class="max-w-7xl px-5 lg:px-0 mx-auto flex justify-between py-3">
@@ -10,7 +18,7 @@ export default function AdminNav() {
     </Link>
         <div class="flex items-center gap-3">
             <h2 class="font-bold">Admin</h2>
-            <button
+            <button onClick={logOut}
                 class="flex gap-2 items-center px-4 py-1 rounded-full text-sm transition-all bg-red-600 hover:bg-red-700 font-medium">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"
                     stroke="currentColor" class="w-6 h-6">

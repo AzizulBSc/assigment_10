@@ -1,6 +1,24 @@
-import React from 'react'
+import React, {useState} from 'react'
 import portalogo from "../../assets/image/learningportal.svg"
+import {useRegisterMutation} from "../../features/auth/authApi";
+import {useDispatch} from "react-redux";
 export default function StudentRegistration() {
+    const [register,{ data, isLoading, error: responseError }] = useRegisterMutation();
+    const  dispatch = useDispatch();
+    const [name,setName] = useState("");
+    const [email,setEmail] = useState("");
+    const [password,setPassword] = useState("");
+    const [cpassword,setCpassword] = useState("");
+    const [role,setRole] = useState("student");
+  const handleSubmit = () => {
+      if(cpassword===password){
+      dispatch(register({name,email,password,role}));
+      alert("Registered Successfully!!!");
+      }
+      else{
+          alert("Password Dose not Match!!!");
+      }
+  }
   return (
     <section className="py-6 bg-primary h-screen grid place-items-center">
     <div className="mx-auto max-w-md px-5 lg:px-0">
@@ -10,29 +28,29 @@ export default function StudentRegistration() {
                 Create Your New Account
             </h2>
         </div>
-        <form className="mt-8 space-y-6" action="#" method="POST">
+        <form className="mt-8 space-y-6" onSubmit={handleSubmit}>
             <input type="hidden" name="remember" value="true" />
             <div className="rounded-md shadow-sm -space-y-px">
                 <div>
                     <label for="name" className="sr-only">Name</label>
                     <input id="name" name="name" type="name" autocomplete="name" required
-                        className="login-input rounded-t-md" placeholder="Student Name" />
+                        className="login-input rounded-t-md" placeholder="Student Name" value={name} onChange={(e)=>setName(e.target.value)}/>
                 </div>
                 <div>
                     <label for="email-address" className="sr-only">Email address</label>
                     <input id="email-address" name="email" type="email" autocomplete="email" required
-                        className="login-input " placeholder="Email address" />
+                        className="login-input " placeholder="Email address" value={email} onChange={(e)=>setEmail(e.target.value)} />
                 </div>
                 <div>
                     <label for="password" className="sr-only">Password</label>
                     <input id="password" name="password" type="password" autocomplete="current-password" required
-                        className="login-input" placeholder="Password" />
+                        className="login-input" placeholder="Password" value={password} onChange={(e)=>setPassword(e.target.value)} />
                 </div>
                 <div>
                     <label for="confirm-password" className="sr-only">Confirm Password</label>
-                    <input id="confirm-password" name="confirm-password" type="password"
+                    <input id="confirm-password" name="cpassword" type="password"
                         autocomplete="confirm-password" required className="login-input rounded-b-md"
-                        placeholder="Confirm Password" />
+                        placeholder="Confirm Password" value={cpassword} onChange={(e)=>setCpassword(e.target.value)} />
                 </div>
             </div>
 

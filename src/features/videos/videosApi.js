@@ -13,9 +13,17 @@ export const videosApi = apiSlice.injectEndpoints({
             // invalidatesTags:["Videos"]
            
         }),
+        videoAdd:builder.mutation({
+            query:({data})=>({
+                url: `/videos`,
+                method: "POST",
+                body:data,
+
+            }),
+        })
     }),
 });
-export const {useGetVideosQuery,useDeleteVideoMutation} = videosApi;
+export const {useGetVideosQuery,useDeleteVideoMutation,useVideoAddMutation} = videosApi;
 
   
   

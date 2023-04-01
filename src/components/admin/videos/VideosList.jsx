@@ -1,12 +1,9 @@
 import React from 'react';
 import {useGetVideosQuery} from "../../../features/videos/videosApi";
 import VideoItem from "./VideoItem";
-// import { useGetVideosQuery } from '../../../features/videos/videosApi';
 function VideosList() {
-    // const {data, isLoading, isError, error} = useGetVideosQuery();
     const {data,isLoading, isError, error} = useGetVideosQuery();
-    console.log(data);
-    console.log(error);
+
     return (
 
         <div className="overflow-x-auto mt-4">
@@ -24,6 +21,7 @@ function VideosList() {
                 ))}
                 </tbody>
             </table>
+
         </div>
     );
 }
