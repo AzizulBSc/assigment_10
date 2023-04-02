@@ -18,7 +18,7 @@ export const quizzes = apiSlice.injectEndpoints({
 
             }),
         }),
-        quizzeedit:builder.mutation({
+        quizzeEdit:builder.mutation({
             query:(data)=>({
                 url: `/quizzes/${data.id}`,
                 method: "PATCH",

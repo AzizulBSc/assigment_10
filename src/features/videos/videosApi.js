@@ -21,7 +21,7 @@ export const videosApi = apiSlice.injectEndpoints({
 
             }),
         }),
-        videoedit:builder.mutation({
+        videoEdit:builder.mutation({
             query:(data)=>({
                 url: `/videos/${data.id}`,
                 method: "PATCH",

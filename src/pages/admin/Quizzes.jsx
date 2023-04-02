@@ -1,12 +1,12 @@
 import React from 'react';
 import AdminNav from '../../components/AdminNav';
 import QuizList from "../../components/admin/quizzes/QuizList";
+import { useQuizzeAddMutation } from "../../features/quizzes/quizzesApi";
 
 import { useState } from "react";
 import Modal from 'react-modal';
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { useQuizzeAddMutation } from "../../features/quizzes/quizzesApi";
 
 const customStyles = {
     content: {
@@ -80,9 +80,17 @@ export default function Quizzes() {
         setQuestion("");
         setVideo_id(null);
         setVideo_title("");
+        setOption1("");
+        setOption2("");
+        setOption3("");
+        setOption4("");
+        
+        setIsCorrect1(false);
+        setIsCorrect2(false);
+        setIsCorrect3(false);
+        setIsCorrect4(false);
         closeModal();
-        alert("Video Added Successfully!!!");
-        // Navigate("/admin/videos");
+        alert("Quizze Added Successfully!!!");
         window.location.href = "/admin/quizzes";
     }
     return (
@@ -104,7 +112,7 @@ export default function Quizzes() {
                             <label htmlFor="name" className="">Name</label>
                             <br/>
                             <input id="question" name="question" type="text" autoComplete="question" required
-                                   className="login-input rounded-t-md" placeholder="Enter Video question" value={question}
+                                   className="login-input rounded-t-sm" placeholder="Enter Video question" value={question}
                                    onChange={(e) => setQuestion(e.target.value)}/>
                         </div>   <br/>
                         <div>
@@ -186,7 +194,7 @@ export default function Quizzes() {
                     </div>
                     <button type="submit"
                             className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500">
-                        Saved Video
+                        Update Quizze
                     </button>
                     <div>
 

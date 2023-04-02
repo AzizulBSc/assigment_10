@@ -25,19 +25,19 @@ const customStyles = {
 Modal.setAppElement('#root');
 export default function Assignment() {
     let subtitle;
-    const [modalIsOpen, setIsOpen] = React.useState(false);
+    const [modalIsOpen, setIsOpen] = useState(false);
     const [assignmentAdd,{ data, isLoading, error: responseError }] = useAssignmentAddMutation();
+
     function openModal() {
         setIsOpen(true);
     }
-    const  Navigate = useNavigate();
     function afterOpenModal() {
     }
 
     function closeModal() {
         setIsOpen(false);
     }
-    const  dispatch = useDispatch();
+
     const [title,setTitle] = useState("");
     const [video_id,setVideo_id] = useState(null);
     const [totalMark,setTotalMark] = useState("");

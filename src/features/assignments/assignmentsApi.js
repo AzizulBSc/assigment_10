@@ -19,7 +19,7 @@ export const assignments = apiSlice.injectEndpoints({
 
             }),
         }),
-        assignmentedit:builder.mutation({
+        assignmentEdit:builder.mutation({
             query:(data)=>({
                 url: `/assignments/${data.id}`,
                 method: "PATCH",

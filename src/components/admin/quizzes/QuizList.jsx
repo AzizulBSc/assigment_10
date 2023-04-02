@@ -1,10 +1,8 @@
 import React from 'react';
-import {useGetQuizzesQuery} from "../../../features/quizzes/quizzesApi";
+import { useGetQuizzesQuery } from "../../../features/quizzes/quizzesApi";
 import QuizItem from "./QuizItem";
 function QuizList() {
     const {data,isLoading, isError, error} = useGetQuizzesQuery();
-    console.log(data);
-    console.log(error);
     return (
 
         <div className="overflow-x-auto mt-4">
