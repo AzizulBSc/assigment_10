@@ -14,16 +14,24 @@ export const videosApi = apiSlice.injectEndpoints({
            
         }),
         videoAdd:builder.mutation({
-            query:({data})=>({
-                url: `/videos`,
+            query:(data)=>({
+                url: "/videos",
                 method: "POST",
+                body:data,
+
+            }),
+        }),
+        videoedit:builder.mutation({
+            query:(data)=>({
+                url: `/videos/${data.id}`,
+                method: "PATCH",
                 body:data,
 
             }),
         })
     }),
 });
-export const {useGetVideosQuery,useDeleteVideoMutation,useVideoAddMutation} = videosApi;
+export const {useGetVideosQuery,useDeleteVideoMutation,useVideoAddMutation,useVideoEditMutation} = videosApi;
 
   
   

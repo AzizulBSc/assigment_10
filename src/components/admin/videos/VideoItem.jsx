@@ -4,17 +4,22 @@ import {useNavigate} from "react-router-dom";
 
 function VideoItem(video) {
     const {title,description,id} = video.video;
+    const shortenedText  = description?.substring(0, 40) + '.........';
+    console.log(shortenedText);
+
     const  navigate = useNavigate();
    const [deleteVideoMutation, { loading, error, data }] = useDeleteVideoMutation();
     const handleDelete = () =>{
         deleteVideoMutation(id);
         alert("Delete Successfully");
-        navigate("/admin/videos");
+        // navigate("/admin/videos");
+        window.location.href = "/admin/videos";
           }
+
     return (
         <tr key={video.id}>
             <td className="table-td">{title}</td>
-            <td className="table-td">{description}</td>
+            <td className="table-td">{shortenedText}</td>
             <td className="table-td flex gap-x-2">
                 <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                      className="w-6 h-6 hover:text-red-500 cursor-pointer transition-all">

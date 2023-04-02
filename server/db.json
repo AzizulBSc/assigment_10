@@ -77,31 +77,49 @@
       "createdAt": "2023-02-24T17:59:00.000Z"
     },
     {
-      "id": 3
-    },
-    {
-      "id": 4
-    },
-    {
-      "id": 5
-    },
-    {
+      "title": "Bangladesh 4K - Scenic Relaxation Film With Calming Music",
+      "description": "2.3M views  5 months ago Bangladesh is such a unique country full of culture and beauty! Enjoy this 4k Scenic Relaxation film featuring the wonders of Bangladesh. From the chaos of Dhaka, to the world's longest beach Cox's Bazar, Bangladesh will leave you amazed with its nature, people, and diversity. I've never seen anything like it and I can't wait to share this video with you. What is your favorite part about Bangladesh?",
+      "url": "https://www.youtube.com/embed/rkpzYNB6xks",
+      "views": "2.3M",
+      "duration": "1.00.19",
+      "createdAt": "2023-04-02T05:28:46.303Z",
       "id": 7
     },
     {
+      "title": "Voluptatum rerum off",
+      "description": "Maiores delectus si",
+      "url": "Tempore voluptate a",
+      "views": "Eaque magnam fugit ",
+      "duration": "Rem sunt sapiente e",
+      "createdAt": "2023-04-02T06:30:32.958Z",
       "id": 8
     },
     {
+      "title": "Harum sint qui ipsum",
+      "description": "Deserunt do nostrum ",
+      "url": "Deserunt eos est vo",
+      "views": "Quo quidem vel asper",
+      "duration": "Quia ut temporibus a",
+      "createdAt": "2023-04-02T06:30:41.595Z",
       "id": 9
-    },
-    {
-      "id": 10
-    },
-    {
-      "id": 11
     }
   ],
-  "assignments": [],
+  "assignments": [
+    {
+      "id": 2,
+      "title": "Assignment 2 - Implement Best Practices",
+      "video_id": 2,
+      "video_title": "#2 JavaScript Tips and Tricks - JavaScript Job Interview Questions",
+      "totalMark": 100
+    },
+    {
+      "id": 3,
+      "title": "Assignment 1 - Implement Debounce Function",
+      "video_id": 1,
+      "video_title": "Debounce Function in JavaScript - JavaScript Job Interview question",
+      "totalMark": 100
+    }
+  ],
   "quizzes": [
     {
       "id": 1,

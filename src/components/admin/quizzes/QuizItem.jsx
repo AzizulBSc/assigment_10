@@ -9,7 +9,7 @@ function QuizItem(quiz) {
     const handleDelete = () =>{
         deleteQuizzeMutation(quiz.quiz.id);
         alert("Delete Successfully");
-        navigate("/admin/quizzes");
+        window.location.href = "/admin/quizzes";
     }
     return (
         <tr>

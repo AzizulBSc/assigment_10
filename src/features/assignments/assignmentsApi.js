@@ -11,6 +11,22 @@ export const assignments = apiSlice.injectEndpoints({
             }),
 
         }),
+        assignmentAdd:builder.mutation({
+            query:(data)=>({
+                url: "/assignments",
+                method: "POST",
+                body:data,
+
+            }),
+        }),
+        assignmentedit:builder.mutation({
+            query:(data)=>({
+                url: `/assignments/${data.id}`,
+                method: "PATCH",
+                body:data,
+
+            }),
+        })
     }),
 });
-export const {useGetAssignmentsQuery,useDeleteAssignmentMutation} = assignments;
+export const {useGetAssignmentsQuery,useDeleteAssignmentMutation,useAssignmentAddMutation,useAssignmentEditMutation} = assignments;

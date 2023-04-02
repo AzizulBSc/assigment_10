@@ -10,7 +10,7 @@ function AssignmentItem(assignment) {
     const handleDelete = () =>{
         deleteAssignmentMutation(id);
         alert("Delete Successfully");
-        navigate("/admin/assignment");
+        window.location.href = "/admin/assignment";
     }
     return (
         <tr key={assignment.id}>
