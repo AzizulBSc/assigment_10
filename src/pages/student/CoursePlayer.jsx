@@ -46,9 +46,7 @@ export default function CoursePlayer() {
         // videoAdd({student_id,student_name,assignment_id,title,createdAt:new Date(),totalMark:100,mark:0,repo_link,status:"pending"});
         setRepo_link("");
         closeModal();
-        alert("Video Added Successfully!!!");
-        // Navigate("/admin/videos");
-        window.location.href = "/admin/videos";
+        alert("Assignment Submitted Successfully!!!");
     }
     return (
     <>
@@ -72,7 +70,8 @@ export default function CoursePlayer() {
                             2020</h2>
 
                         <div className="flex gap-4">
-                            <Link to="#" onClick={openModal}
+                            {/*style={{pointerEvents: "none"}}*/}
+                            <Link to="#"  onClick={openModal}
                                 className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary">
                                 এসাইনমেন্ট
                             </Link>
