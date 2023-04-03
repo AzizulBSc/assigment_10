@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import { Link } from 'react-router-dom';
 import Nav from '../../components/Nav';
 import {useGetVideosQuery} from "../../features/videos/videosApi";
@@ -23,13 +23,13 @@ const customStyles = {
 Modal.setAppElement('#root');
 
 export default function CoursePlayer() {
+
     const {data,isLoading, isError, error} = useGetVideosQuery();
-    // console.log(data);
-    // const [title,setTitle] = useState("");
+    // console.log(data[0]);
     const [repo_link,setRepo_link] = useState("");
     let subtitle;
     const [modalIsOpen, setIsOpen] = React.useState(false);
-    function openModal() {
+   const openModal=(data)=> {
         setIsOpen(true);
     }
     function afterOpenModal() {
@@ -37,13 +37,22 @@ export default function CoursePlayer() {
 
     function closeModal() {
         setIsOpen(false);
-    }
-    // const  dispatch = useDispatch();
 
-    // const [playing,setPlaying] = useState(data)
+    }
+    const [playing,setPlaying] = useState();
+    // const  dispatch = useDispatch();
+    useEffect(() => {
+       setPlaying(data);
+
+    },[data]);
+    // if(playing.length>0)
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        // videoAdd({student_id,student_name,assignment_id,title,createdAt:new Date(),totalMark:100,mark:0,repo_link,status:"pending"});
+        const  student = JSON.parse(localStorage.getItem('auth')).user;
+        console.log("submit");
+        // videoAdd({student_id:student.id,student_name:student.name,assignment_id,title,createdAt:new Date(),totalMark:100,mark:0,repo_link,status:"pending"});
+        console.log({student_id:student.id,student_name:student.name,assignment_id:playing[0].id,title:playing[0].title,createdAt:new Date(),totalMark:100,mark:0,repo_link,status:"pending"});
         setRepo_link("");
         closeModal();
         alert("Assignment Submitted Successfully!!!");
@@ -71,7 +80,7 @@ export default function CoursePlayer() {
 
                         <div className="flex gap-4">
                             {/*style={{pointerEvents: "none"}}*/}
-                            <Link to="#"  onClick={openModal}
+                            <Link to="#"  onClick={() => openModal(data)}
                                 className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary">
                                 এসাইনমেন্ট
                             </Link>
