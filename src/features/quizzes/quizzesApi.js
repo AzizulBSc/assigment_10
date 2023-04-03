@@ -25,7 +25,10 @@ export const quizzes = apiSlice.injectEndpoints({
                 body:data,
 
             }),
-        })
+        }),
+        getVideoQuizze:builder.query({
+            query:(video_id)=>`/quizzes?video_id=${video_id}`,
+        }),
     }),
 });
-export const {useGetQuizzesQuery,useDeleteQuizzeMutation,useQuizzeAddMutation,useQuizzeEditMutation} = quizzes;
+export const {useGetQuizzesQuery,useDeleteQuizzeMutation,useQuizzeAddMutation,useQuizzeEditMutation,useGetVideoQuizzeQuery} = quizzes;

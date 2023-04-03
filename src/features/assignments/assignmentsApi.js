@@ -26,7 +26,10 @@ export const assignments = apiSlice.injectEndpoints({
                 body:data,
 
             }),
-        })
+        }),
+        getVideoAssignment:builder.query({
+            query:(video_id)=>`/quizzes?assignments=${video_id}`,
+        }),
     }),
 });
-export const {useGetAssignmentsQuery,useDeleteAssignmentMutation,useAssignmentAddMutation,useAssignmentEditMutation} = assignments;
+export const {useGetAssignmentsQuery,useDeleteAssignmentMutation,useAssignmentAddMutation,useAssignmentEditMutation,useGetVideoAssignmentQuery} = assignments;

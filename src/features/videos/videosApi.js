@@ -5,6 +5,9 @@ export const videosApi = apiSlice.injectEndpoints({
             query:()=>"/videos",
             // providesTags:["Videos"],
         }),
+        getVideo:builder.query({
+            query:(id)=>`/videos/${id}`,
+        }),
         deleteVideo:builder.mutation({
             query: (id) => ({
                 url: `/videos/${id}`,
@@ -31,7 +34,7 @@ export const videosApi = apiSlice.injectEndpoints({
         })
     }),
 });
-export const {useGetVideosQuery,useDeleteVideoMutation,useVideoAddMutation,useVideoEditMutation} = videosApi;
+export const {useGetVideosQuery,useGetVideoQuery,useDeleteVideoMutation,useVideoAddMutation,useVideoEditMutation} = videosApi;
 
   
   
