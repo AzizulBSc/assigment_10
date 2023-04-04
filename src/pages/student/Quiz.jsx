@@ -1,11 +1,41 @@
-import React from 'react'
-import Nav from '../../components/Nav'
+import React, { useState } from 'react';
+import { useParams } from 'react-router-dom';
+import Nav from '../../components/Nav';
+import { useGetVideoQuizzeQuery } from '../../features/quizzes/quizzesApi';
+import QuizItem from '../student/QuizeItem';
 
 export default function Quiz() {
+  const url = useParams();
+  const {data,isLoading,isError} = useGetVideoQuizzeQuery(url?.id);
+  const [marks, setMarks] = useState({});
+  const [ans, setAns] = useState({});
+
+  const handleSetMark = (quizId, selectedOptions) => {
+    setMarks((prevMarks) => ({
+      ...prevMarks,
+      [quizId]: selectedOptions,
+    }));
+  };
+  const handleSetAns = (quizId, correctOptions) => {
+    setAns((prevAns) => ({
+      ...prevAns,
+      [quizId]: correctOptions,
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    console.log(marks);
+    console.log(ans)
+  };
+
+
+
   return (
     <>
     <Nav/>
   <section className="py-6 bg-primary">
+    <form onSubmit={handleSubmit}>
   <div className="mx-auto max-w-7xl px-5 lg:px-0">
     <div className="mb-8">
       <h1 className="text-2xl font-bold">Quizzes for "Debounce Function in JavaScript - JavaScript Job Interview question"
@@ -13,69 +43,16 @@ export default function Quiz() {
       <p className="text-sm text-slate-200">Each question contains 5 Mark</p>
     </div>
     <div className="space-y-8 ">
-      <div className="quiz">
-        <h4 className="question">Quiz 1 - What is a Debounce function in JavaScript?</h4>
-        <form className="quizOptions">
-          {/* <!-- Option 1 --> */}
-          <label for="option1_q1">
-            <input type="checkbox" id="option1_q1" />
-            A function that is called after a certain time interval
-          </label>
-
-          {/* <!-- Option 2 --> */}
-          <label for="option2_q1">
-            <input type="checkbox" id="option2_q1" />
-            A function that is called after a certain time interval
-          </label>
-
-          {/* <!-- Option 3 --> */}
-          <label for="option3_q1">
-            <input type="checkbox" id="option3_q1" />
-            A function that is called after a certain time interval
-          </label>
-
-          {/* <!-- Option 4 --> */}
-          <label for="option4_q1">
-            <input type="checkbox" id="option4_q1" />
-            A function that is called after a certain time interval
-          </label>
-        </form>
-      </div>
-
-      <div className="quiz">
-        <h4 className="question">Quiz 2 - Which of the following is an example of a situation where you would use the
-          Debounce function?</h4>
-        <form className="quizOptions">
-          {/* <!-- Option 1 --> */}
-          <label for="option1_q2">
-            <input type="checkbox" id="option1_q2" />
-            A search bar where the results are displayed as you type.
-          </label>
-
-          {/* <!-- Option 2 --> */}
-          <label for="option2_q2">
-            <input type="checkbox" id="option2_q2" />
-            A button that performs an action when clicked.
-          </label>
-
-          {/* <!-- Option 3 --> */}
-          <label for="option3_q2">
-            <input type="checkbox" id="option3_q2" />
-            An animation that plays when a user hovers over an element.
-          </label>
-
-          {/* <!-- Option 4 --> */}
-          <label for="option4_q2">
-            <input type="checkbox" id="option4_q2" />
-            All of the above.
-          </label>
-        </form>
-      </div>
+      {data?.map((quiz)=>
+      <QuizItem key={quiz.id} quiz={quiz} setMark={handleSetMark} setAns={handleSetAns}/>
+      )}
+     
     </div>
 
     <button
       className="px-4 py-2 rounded-full bg-cyan block ml-auto mt-8 hover:opacity-90 active:opacity-100 active:scale-95 ">Submit</button>
   </div>
+  </form>
 </section>
 </>
   )

@@ -22,9 +22,7 @@ export default function Video(props) {
                     d="M15.91 11.672a.375.375 0 010 .656l-5.603 3.113a.375.375 0 01-.557-.328V8.887c0-.286.307-.466.557-.327l5.603 3.112z" />
 </svg>
                 <div clas="flex flex-col w-full">
-                    <a href="#">
-                        <p className="text-slate-50 text-sm font-medium">{title}</p>
-                    </a>
+                        <span><p className="text-slate-50 text-sm font-medium">{title}</p></span>
                     <div>
                         <span className="text-gray-400 text-xs mt-1">{duration}</span>
                         <span className="text-gray-400 text-xs mt-1"> | </span>

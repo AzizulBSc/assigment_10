@@ -4,6 +4,14 @@ export const marks = apiSlice.injectEndpoints({
         getMarks:builder.query({
             query:()=>"/assignmentMark",
         }),
+        assmarksAdd:builder.mutation({
+            query:(data)=>({
+                url: "/assignmentMark",
+                method: "POST",
+                body:data,
+
+            }),
+        }),
         deleteMark:builder.mutation({
             query: (id) => ({
                 url: `/assignmentMark/${id}`,
@@ -19,7 +27,10 @@ export const marks = apiSlice.injectEndpoints({
                 body:data,
 
             }),
-        })
+        }),
+        getAssMark:builder.query({
+            query:(data)=>`/assignmentMark?student_id=${data.student_id}&&assignment_id=${data.assignment_id}`,
+        }),
     }),
 });
-export const {useGetMarksQuery,useDeleteMarkMutation,useEditMarkMutation} = marks;
+export const {useGetMarksQuery,useDeleteMarkMutation,useEditMarkMutation,useAssmarksAddMutation,useGetAssMarkQuery} = marks;
