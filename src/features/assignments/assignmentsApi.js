@@ -28,7 +28,7 @@ export const assignments = apiSlice.injectEndpoints({
             }),
         }),
         getVideoAssignment:builder.query({
-            query:(video_id)=>`/quizzes?assignments=${video_id}`,
+            query:(video_id)=>`/assignments?video_id=${video_id}`,
         }),
     }),
 });
