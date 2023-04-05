@@ -3,8 +3,6 @@ import {useGetAssignmentsQuery} from "../../../features/assignments/assignmentsA
 import AssignmentItem from "./AssignmentItem";
 function AssignmentList() {
     const {data,isLoading, isError, error} = useGetAssignmentsQuery();
-    console.log(data);
-    console.log(error);
     return (
 
         <div className="overflow-x-auto mt-4">
