@@ -3,6 +3,7 @@ import Modal from "react-modal";
 import { Link } from "react-router-dom";
 import { useGetVideoAssignmentQuery } from "../../../features/assignments/assignmentsApi";
 import { useAssmarksAddMutation, useGetAssMarkQuery } from "../../../features/marks/marksApi";
+import { useSearchQuizMarkQuery } from "../../../features/quizMark/quizMarkApi";
 import { useGetVideoQuizzeQuery } from "../../../features/quizzes/quizzesApi";
 import { useGetVideoQuery } from "../../../features/videos/videosApi";
 
@@ -22,10 +23,11 @@ const customStyles = {
   },
 };
 Modal.setAppElement("#root");
+
 export default function Player(playingId) {
-    const [isDisabled,setIsDisabled] = useState(false)
-    const [assmarksAdd,{data:addedmark,isLoading:isLoadingmarkadd,isError:isErrormarkadd,error:errorMarkadd}] = useAssmarksAddMutation();
-    const student = JSON.parse(localStorage.getItem("auth")).user;
+  const [isDisabled, setIsDisabled] = useState(false)
+  const [assmarksAdd, { data: addedmark, isLoading: isLoadingmarkadd, isError: isErrormarkadd, error: errorMarkadd }] = useAssmarksAddMutation();
+  const student = JSON.parse(localStorage.getItem("auth")).user;
   const [modalIsOpen, setIsOpen] = useState(false);
   const [repo_link, setRepo_link] = useState("");
   const [assignment_id, setAssignment_id] = useState(null);
@@ -44,11 +46,21 @@ export default function Player(playingId) {
     isLoading: isLoadingQuize,
     isError: isErrorquiz,
   } = useGetVideoQuizzeQuery(playingId?.playingId);
+
+  //previously submitted assignment if have submitted
   const {
     data: assmark,
     isLoading: isLoadingassmark,
     isError: isErrorassmark
-  } = useGetAssMarkQuery({student_id: student?.id,assignment_id:assignments?.[0]?.id});
+  } = useGetAssMarkQuery({ student_id: student?.id, assignment_id: assignments?.[0]?.id });
+
+
+  //previously submitted quiz if have submitted
+  const {
+    data: quizmark,
+    isLoading: isLoadingquizmark,
+    isError: isErrorquizmark
+  } = useSearchQuizMarkQuery({ student_id: student?.id, video_id: playingId?.playingId });
 
   let quizebtn = "";
   let assbtn = "";
@@ -61,17 +73,26 @@ export default function Player(playingId) {
       </Link>
     );
   }
-  useEffect(()=>{
+  useEffect(() => {
     setIsDisabled(true);
-  },[assmark])
+  }, [assmark])
 
+
+  // quize submit check if submitted quize button disabled
+  if (quizmark?.length > 0) {
+    quizebtn =
+      <button disabled={true}
+        className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary">
+        কুইজে জমা দিয়েছেন
+      </button>
+  }
   if (assignments?.length > 0 && !isLoadingAss && !isErrorAss) {
     assbtn = (
       <button
         onClick={() => openModal()} disabled={isDisabled}
         className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary">
-        এসাইনমেন্ট {isDisabled?"জমা দিয়েছেন":""}
-        </button>
+        এসাইনমেন্ট {isDisabled ? "জমা দিয়েছেন" : ""}
+      </button>
     );
   }
   let player = "";
@@ -126,7 +147,7 @@ export default function Player(playingId) {
     setIsOpen(true);
   };
 
-  function afterOpenModal() {}
+  function afterOpenModal() { }
 
   function closeModal() {
     setIsOpen(false);
@@ -136,16 +157,16 @@ export default function Player(playingId) {
     e.preventDefault();
     //assignment mark add
     assmarksAdd({
-        student_id: student.id,
-        student_name: student.name,
-        assignment_id: assignments[0]?.id,
-        title: assignments[0]?.title,
-        createdAt: new Date(),
-        totalMark: 100,
-        mark: 0,
-        repo_link,
-        status: "pending",
-      });
+      student_id: student.id,
+      student_name: student.name,
+      assignment_id: assignments[0]?.id,
+      title: assignments[0]?.title,
+      createdAt: new Date(),
+      totalMark: 100,
+      mark: 0,
+      repo_link,
+      status: "pending",
+    });
     setRepo_link("");
     closeModal();
     alert("Assignment Submitted Successfully!!!");

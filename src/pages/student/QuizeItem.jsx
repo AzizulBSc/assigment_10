@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 export default 
 function QuizItem({ quiz, setMark ,setAns}) {
   const [selectedOptions, setSelectedOptions] = useState([]);
+  const [co, setCo] = useState([]);
 
   const handleOptionChange = (optionId) => {
     const newSelectedOptions = [...selectedOptions];
@@ -18,15 +19,18 @@ function QuizItem({ quiz, setMark ,setAns}) {
     setMark(quiz.id, newSelectedOptions);
   };
   useEffect(()=>{
-    if(quiz.options[0].isCorrect==true){
-        setAns(quiz.id,1);
-    } if(quiz.options[1].isCorrect==true){
-        setAns(quiz.id,2);
-    } if(quiz.options[2].isCorrect==true){
-        setAns(quiz.id,3);
-    } if(quiz.options[3].isCorrect==true){
-        setAns(quiz.id,4);
+    let newCO=[...co];
+    if(quiz.options[0].isCorrect.toString()=="true"){
+      newCO.push(1);
+    } if(quiz.options[1].isCorrect.toString()=="true"){
+      newCO.push(2);
+    } if(quiz.options[2].isCorrect.toString()=="true"){
+      newCO.push(3);
+    } if(quiz.options[3].isCorrect.toString()=="true"){
+      newCO.push(4);
     }
+    setCo(newCO);
+    setAns(quiz.id,newCO);
   },[quiz])
   return (
     <div className="space-y-8 ">

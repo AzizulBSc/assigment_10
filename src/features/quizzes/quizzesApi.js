@@ -30,5 +30,6 @@ export const quizzes = apiSlice.injectEndpoints({
             query:(video_id)=>`/quizzes?video_id=${video_id}`,
         }),
     }),
+    
 });
 export const {useGetQuizzesQuery,useDeleteQuizzeMutation,useQuizzeAddMutation,useQuizzeEditMutation,useGetVideoQuizzeQuery} = quizzes;
