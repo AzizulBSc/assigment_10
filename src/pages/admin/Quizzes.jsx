@@ -7,6 +7,7 @@ import { useState } from "react";
 import Modal from 'react-modal';
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { useGetVideosQuery } from '../../features/videos/videosApi';
 
 const customStyles = {
     content: {
@@ -24,10 +25,17 @@ const customStyles = {
     },
 };
 Modal.setAppElement('#root');
+
+
+
 export default function Quizzes() {
     let subtitle;
     const [modalIsOpen, setIsOpen] = React.useState(false);
     const [quizzeAdd,{ data, isLoading, error: responseError }] = useQuizzeAddMutation();
+    
+    const { data: options, isLoading: videosLoading, isError, } = useGetVideosQuery();
+    const [selectedOption, setSelectedOption] = useState();
+
     function openModal() {
         setIsOpen(true);
     }
@@ -40,7 +48,7 @@ export default function Quizzes() {
     }
     const  dispatch = useDispatch();
     const [question,setQuestion] = useState("");
-    const [video_id,setVideo_id] = useState(null);
+    const [video_id,setVideo_id] = useState();
     const [video_title,setVideo_title] = useState("");
     const [option1,setOption1] = useState("");
     const [option2,setOption2] = useState("");
@@ -51,18 +59,16 @@ export default function Quizzes() {
     const [isCorrect2,setIsCorrect2] = useState(false);
     const [isCorrect3,setIsCorrect3] = useState(false);
     const [isCorrect4,setIsCorrect4] = useState(false);
-   
-    // const  [mcq,setMcq] = useState({
-    //     question:question,
-    //     video_id:video_id,
-    //     video_title:video_title,
-    //     options:[
-    //         {id:1,option:option1,isCorrect:isCorrect1},
-    //         {id:2,option:option2,isCorrect:isCorrect2},
-    //         {id:3,option:option3,isCorrect:isCorrect3},
-    //         {id:4,option:option4,isCorrect:isCorrect4},
-    //     ],
-    // });
+
+
+    const handleOptionChange = (event) => {
+        const selectedOption = event.target.value;
+        const selectedOptionObject = options?.find(option => option.id == selectedOption);
+        setSelectedOption(selectedOption);
+        setVideo_id(selectedOptionObject.id);
+        setVideo_title(selectedOptionObject.title);
+    }
+
 
     const handleSubmit = (e) => { 
         e.preventDefault();
@@ -78,7 +84,7 @@ export default function Quizzes() {
             {id:3,option:option3,isCorrect:isCorrect3},
             {id:4,option:option4,isCorrect:isCorrect4},]});
         setQuestion("");
-        setVideo_id(null);
+        setVideo_id();
         setVideo_title("");
         setOption1("");
         setOption2("");
@@ -116,19 +122,15 @@ export default function Quizzes() {
                                    onChange={(e) => setQuestion(e.target.value)}/>
                         </div>   <br/>
                         <div>
-                            <label htmlFor="video_title" className="">Select Video</label>
-                            <input id="video_title" name="video_title" type="text"
-                                   autoComplete="video_title" required className="login-input rounded-b-md"
-                                   value={video_title}
-                                   onChange={(e) => setVideo_title(e.target.value)}/>
-                        </div>
+            <label htmlFor="video_title" className="">Select Video</label>
+                            <select required value={selectedOption} className="login-input rounded-b-md" onChange={handleOptionChange}>
+                                {options?.map(option => (
+                                    <option key={option.id} value={option.id}>{option.title}</option>
+                                ))}
+                            </select>
+            </div>
                         <br/>
-                        <div>
-                            <label htmlFor="video_id" className="">Select Video</label>
-                            <input id="video_id" name="video_id" type="Number" autoComplete="video_id" required
-                                   className="login-input "  value={video_id}
-                                   onChange={(e) => setVideo_id(e.target.value)}/>
-                        </div> <br/>
+                       
                             <div>
                                 <label htmlFor="option1" className="">Option 1</label>
                                 <input id="option1" name="option1" type="text" autoComplete="option1" required
@@ -194,7 +196,7 @@ export default function Quizzes() {
                     </div>
                     <button type="submit"
                             className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500">
-                        Update Quizze
+                        Saved Quizze
                     </button>
                     <div>
 

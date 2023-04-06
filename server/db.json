@@ -102,15 +102,24 @@
       "duration": "Repellendus Dolor e",
       "createdAt": "2023-04-02T18:47:07.794Z",
       "id": 12
+    },
+    {
+      "title": "শিশুশিল্পীর কন্ঠে চমৎকার সংগীত - মন মাঝি খবরদার - Jubayer Ahmed || Mon Majhi Khobordar - Studio 1",
+      "description": "5,907,045 views  Nov 16, 2021  #gojol #banglapopularsong #newislamicsong2021 Song: Mon Majhi Khobordar Singer : Jubayer Ahmed Lyric & Tune :  Collected Record Label: Studio 1 Sound Design: Mahdi Hasan Video Director, Color : Mahdi Hasan Video Edit : Wahidujjaman Label : Studio 1 Producer: Serajul Islam Akon",
+      "url": "https://www.youtube.com/embed/ubt_xc-qMRk",
+      "views": "5.9M",
+      "duration": "3.5m",
+      "createdAt": "2023-04-06T19:30:32.435Z",
+      "id": 13
     }
   ],
   "assignments": [
     {
       "id": 2,
-      "title": "2 Assignment 2 - Implement Best Practices",
+      "title": "2 Assignment - Implement Best Practices",
       "video_id": "2",
       "video_title": "#2 JavaScript Tips and Tricks - JavaScript Job Interview Questions",
-      "totalMark": "90"
+      "totalMark": "100"
     },
     {
       "id": 3,
@@ -127,9 +136,9 @@
       "id": 4
     },
     {
-      "title": "Aut aut sequi omnis ",
+      "title": "Assignment Aut aut sequi omnis ",
       "video_id": 11,
-      "video_title": "trtEst dolorum eum moll",
+      "video_title": "Est dolorum eum moll",
       "totalMark": "90",
       "id": 5
     },
@@ -139,6 +148,20 @@
       "video_title": "Debounce Function in JavaScript - JavaScript Job Interview question",
       "totalMark": "80",
       "id": 6
+    },
+    {
+      "title": "Sequi amet molestia",
+      "video_id": 12,
+      "video_title": "Ex sit officia sequ",
+      "totalMark": "100",
+      "id": 7
+    },
+    {
+      "title": "Assignment for new video",
+      "video_id": 13,
+      "video_title": "শিশুশিল্পীর কন্ঠে চমৎকার সংগীত - মন মাঝি খবরদার - Jubayer Ahmed || Mon Majhi Khobordar - Studio 1",
+      "totalMark": "100",
+      "id": 8
     }
   ],
   "quizzes": [
@@ -299,6 +322,66 @@
       "mark": 50,
       "repo_link": "https://github.com/Learn-with-Sumit/assignment-1",
       "status": "published"
+    },
+    {
+      "student_id": 8,
+      "student_name": "Azizul Hoque",
+      "assignment_id": 8,
+      "title": "Assignment for new video",
+      "createdAt": "2023-04-06T19:49:11.943Z",
+      "totalMark": 100,
+      "mark": "85",
+      "repo_link": "https://github.com/Learn-with-Sumit/think-in-a-redux-way",
+      "status": "published",
+      "id": 7
+    },
+    {
+      "student_id": 8,
+      "student_name": "Azizul Hoque",
+      "assignment_id": 2,
+      "title": "2 Assignment - Implement Best Practices",
+      "createdAt": "2023-04-06T19:50:54.249Z",
+      "totalMark": 100,
+      "mark": "100",
+      "repo_link": "https://github.com/Learn-with-Sumit/think-in-a-redux-way",
+      "status": "published",
+      "id": 8
+    },
+    {
+      "student_id": 8,
+      "student_name": "Azizul Hoque",
+      "assignment_id": 4,
+      "title": "assignment 7",
+      "createdAt": "2023-04-06T19:51:27.332Z",
+      "totalMark": 100,
+      "mark": 0,
+      "repo_link": "https://github.com/Learn-with-Sumit/think-in-a-redux-way",
+      "status": "published",
+      "id": 9
+    },
+    {
+      "student_id": 8,
+      "student_name": "Azizul Hoque",
+      "assignment_id": 5,
+      "title": "Assignment Aut aut sequi omnis ",
+      "createdAt": "2023-04-06T19:52:19.409Z",
+      "totalMark": 100,
+      "mark": "80",
+      "repo_link": "Aut sit ut id saepe",
+      "status": "published",
+      "id": 13
+    },
+    {
+      "student_id": 8,
+      "student_name": "Azizul Hoque",
+      "assignment_id": 7,
+      "title": "Sequi amet molestia",
+      "createdAt": "2023-04-06T19:57:48.851Z",
+      "totalMark": 100,
+      "mark": "60",
+      "repo_link": "Perspiciatis minima",
+      "status": "published",
+      "id": 14
     }
   ],
   "quizMark": [

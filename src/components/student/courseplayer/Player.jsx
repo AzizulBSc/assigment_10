@@ -74,7 +74,14 @@ export default function Player(playingId) {
     );
   }
   useEffect(() => {
-    setIsDisabled(true);
+    console.log(assmark?.length)
+    console.log(assmark)
+    if(assmark?.length > 0){
+      setIsDisabled(true);
+    }
+    if(assmark?.length === 0){
+      setIsDisabled(false);
+    }
   }, [assmark])
 
 
@@ -83,7 +90,7 @@ export default function Player(playingId) {
     quizebtn =
       <button disabled={true}
         className="px-3 font-bold py-1 border border-cyan text-cyan rounded-full text-sm hover:bg-cyan hover:text-primary">
-        কুইজে জমা দিয়েছেন
+        কুইজ জমা দিয়েছেন
       </button>
   }
   if (assignments?.length > 0 && !isLoadingAss && !isErrorAss) {
@@ -95,6 +102,7 @@ export default function Player(playingId) {
       </button>
     );
   }
+  
   let player = "";
   if (isLoading) {
     player = (
@@ -118,7 +126,7 @@ export default function Player(playingId) {
           width="100%"
           className="aspect-video"
           src={data.url}
-          title="Things I wish I knew as a Junior Web Developer - Sumit Saha - BASIS SoftExpo 2023"
+          title={data.title}
           frameborder="0"
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen></iframe>
@@ -170,6 +178,7 @@ export default function Player(playingId) {
     setRepo_link("");
     closeModal();
     alert("Assignment Submitted Successfully!!!");
+    setIsDisabled(true);
   };
   return (
     <>

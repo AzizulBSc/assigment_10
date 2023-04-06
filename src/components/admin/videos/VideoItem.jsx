@@ -26,7 +26,7 @@ function VideoItem(video) {
     useDeleteVideoMutation();
     const [videoEdit] = useVideoEditMutation();
   const { title, description, id, duration, views,url,createdAt } = video.video;
-  const shortenedText = description?.substring(0, 40) + ".........";
+  const shortenedText = description?.substring(0, 40) + ".......";
 
   const [title1, setTitle1] = useState(title);
   const [description1, setDescription1] = useState(description);

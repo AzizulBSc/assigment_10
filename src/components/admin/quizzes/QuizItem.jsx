@@ -3,6 +3,7 @@ import { useDeleteQuizzeMutation, useQuizzeEditMutation } from "../../../feature
 
 import { useState } from "react";
 import Modal from "react-modal";
+import { useGetVideosQuery } from "../../../features/videos/videosApi";
 
 const customStyles = {
   content: {
@@ -24,6 +25,13 @@ Modal.setAppElement("#root");
 function QuizItem(quiz) {
   const [deleteQuizzeMutation, { loading, error, data }] =
     useDeleteQuizzeMutation();
+
+    const { data: options, isLoading: videosLoading, isError, } = useGetVideosQuery();
+   
+
+
+
+
   const handleDelete = () => {
     deleteQuizzeMutation(quiz.quiz.id);
     alert("Delete Successfully");
@@ -41,6 +49,8 @@ function QuizItem(quiz) {
     setIsOpen(false);
   }
   
+    //old value placed on field
+  const [selectedOption, setSelectedOption] = useState(quiz?.quiz.video_id);
   const [question, setQuestion] = useState(quiz?.quiz.question);
   const [video_id, setVideo_id] = useState(quiz?.quiz.video_id);
   const [video_title, setVideo_title] = useState(quiz?.quiz.video_title);
@@ -53,6 +63,16 @@ function QuizItem(quiz) {
   const [isCorrect2, setIsCorrect2] = useState(quiz?.quiz.options[1].isCorrect);
   const [isCorrect3, setIsCorrect3] = useState(quiz?.quiz.options[2].isCorrect);
   const [isCorrect4, setIsCorrect4] = useState(quiz?.quiz.options[3].isCorrect);
+
+
+  const handleOptionChange = (event) => {
+    const selectedOption = event.target.value;
+    const selectedOptionObject = options?.find(option => option.id == selectedOption);
+    setSelectedOption(selectedOption);
+    setVideo_id(selectedOptionObject.id);
+    setVideo_title(selectedOptionObject.title);
+}
+
 
   const handleUpdate = (e) => {
     e.preventDefault();
@@ -88,7 +108,7 @@ function QuizItem(quiz) {
     setIsCorrect3(false);
     setIsCorrect4(false);
     closeModal();
-    alert("Quizze Added Successfully!!!");
+    alert("Quizze Updated Successfully!!!");
     window.location.href = "/admin/quizzes";
   };
   function afterOpenModal() {
@@ -124,36 +144,13 @@ function QuizItem(quiz) {
             </div>
             <br />
             <div>
-              <label htmlFor="video_title" className="">
-                Select Video
-              </label>
-              <input
-                id="video_title"
-                name="video_title"
-                type="text"
-                autoComplete="video_title"
-                required
-                className="login-input rounded-b-md"
-                value={video_title}
-                onChange={(e) => setVideo_title(e.target.value)}
-              />
+            <label htmlFor="video_title" className="">Select Video</label>
+                            <select required value={selectedOption} className="login-input rounded-b-md" onChange={handleOptionChange}>
+                                {options?.map(option => (
+                                    <option key={option.id} value={option.id}>{option.title}</option>
+                                ))}
+                            </select>
             </div>
-            <br />
-            <div>
-              <label htmlFor="video_id" className="">
-                Select Video
-              </label>
-              <input
-                id="video_id"
-                name="video_id"
-                type="Number"
-                autoComplete="video_id"
-                required
-                className="login-input "
-                value={video_id}
-                onChange={(e) => setVideo_id(e.target.value)}
-              />
-            </div>{" "}
             <br />
             <div>
               <label htmlFor="option1" className="">

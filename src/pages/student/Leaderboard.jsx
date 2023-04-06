@@ -6,11 +6,14 @@ import { useGetQuizMarksQuery } from "../../features/quizMark/quizMarkApi";
 export default function Leaderboard() {
     const { data: assMarks, isLoading, isError, error } = useGetMarksQuery();
     const { data: quizMarks } = useGetQuizMarksQuery();
-    const getTotalMarksByStudent = (marks, xyz) => {
+    const [scoreboard, setScoreboard] = React.useState({});
+    const student = JSON.parse(localStorage.getItem("auth")).user;
+  // get total marks(assigment and quizzes) by student
+    const getTotalMarksByStudent = (marks, label) => {
         const results = {};
         marks?.reduce((acc, curr) => {
             const { student_id, mark } = curr;
-            if (xyz === "totalAssMarks") {
+            if (label === "totalAssMarks") {
                 const totalAssMarks = parseInt(mark);
 
                 if (!results[student_id]) {
@@ -44,25 +47,18 @@ export default function Leaderboard() {
     useEffect(() => {
         let totalAssMarksByStudent, totalQuizMarksByStudent;
         if (assMarks) {
-            console.log("assMarks:");
-            console.log(assMarks);
             totalAssMarksByStudent = getTotalMarksByStudent(
                 assMarks,
                 "totalAssMarks"
             );
-            console.log("totalAssMarksByStudent:");
-            console.log(totalAssMarksByStudent);
         }
         if (quizMarks) {
-            console.log("quizMarks:");
-            console.log(quizMarks);
             totalQuizMarksByStudent = getTotalMarksByStudent(
                 quizMarks,
                 "totalQuizMarks"
             );
-            console.log("totalQuizMarksByStudent:");
-            console.log(totalQuizMarksByStudent);
         }
+        // merge two arrays for making leaderboard
         if (totalQuizMarksByStudent && assMarks) {
             const mergedArray = totalQuizMarksByStudent?.map((quiz) => {
                 const correspondingAssignment = totalAssMarksByStudent?.find(
@@ -95,11 +91,48 @@ export default function Leaderboard() {
                     }
                 }
             }
-
-            console.log("after sorted Leaderboard:");
-            console.log(Leaderboard);
+            setScoreboard(Leaderboard);
+            
         }
     }, [assMarks, quizMarks]);
+
+let leaderBoardcontent = <tr className="border-b border-slate-600/50">
+<td className="table-td text-center" colSpan="5">No Data Available</td>
+</tr>;
+let userContent = <tr className="border-2 border-cyan">
+<td className="table-td text-center font-bold" colSpan="5">No Data Available</td>
+</tr>;
+    if(scoreboard.length > 0){
+        scoreboard.map((row) => {
+            if(row.student_id == student.id){
+                userContent = <tr className="border-2 border-cyan">
+                <td className="table-td text-center font-bold">{row.rank}</td>
+                <td className="table-td text-center font-bold">{row.student_name}</td>
+                <td className="table-td text-center font-bold">{row.totalQuizMarks}</td>
+                <td className="table-td text-center font-bold">{row.totalAssMarks}</td>
+                <td className="table-td text-center font-bold">{row.totalMarks}</td>
+            </tr>
+            }
+        })
+        leaderBoardcontent = scoreboard.slice(0, 20).map((student) => (
+            <tr className="border-b border-slate-600/50">
+                
+                                    <td className="table-td text-center">{student.rank}</td>
+                                    <td className="table-td text-center">{student.student_name}</td>
+                                    <td className="table-td text-center">{student.totalQuizMarks}</td>
+                                    <td className="table-td text-center">{student.totalAssMarks}</td>
+                                    <td className="table-td text-center">{student.totalMarks}</td>
+                                </tr>
+         ))
+       
+        
+    }
+
+
+
+
+
+
     return (
         <>
             <Nav />
@@ -119,13 +152,7 @@ export default function Leaderboard() {
                             </thead>
 
                             <tbody>
-                                <tr className="border-2 border-cyan">
-                                    <td className="table-td text-center font-bold">4</td>
-                                    <td className="table-td text-center font-bold">Saad Hasan</td>
-                                    <td className="table-td text-center font-bold">50</td>
-                                    <td className="table-td text-center font-bold">50</td>
-                                    <td className="table-td text-center font-bold">100</td>
-                                </tr>
+                                {userContent}
                             </tbody>
                         </table>
                     </div>
@@ -144,53 +171,7 @@ export default function Leaderboard() {
                             </thead>
 
                             <tbody>
-                                <tr className="border-b border-slate-600/50">
-                                    <td className="table-td text-center">4</td>
-                                    <td className="table-td text-center">Saad Hasan</td>
-                                    <td className="table-td text-center">50</td>
-                                    <td className="table-td text-center">50</td>
-                                    <td className="table-td text-center">100</td>
-                                </tr>
-
-                                <tr className="border-b border-slate-600/50">
-                                    <td className="table-td text-center">4</td>
-                                    <td className="table-td text-center">Saad Hasan</td>
-                                    <td className="table-td text-center">50</td>
-                                    <td className="table-td text-center">50</td>
-                                    <td className="table-td text-center">100</td>
-                                </tr>
-
-                                <tr className="border-b border-slate-600/50">
-                                    <td className="table-td text-center">4</td>
-                                    <td className="table-td text-center">Saad Hasan</td>
-                                    <td className="table-td text-center">50</td>
-                                    <td className="table-td text-center">50</td>
-                                    <td className="table-td text-center">100</td>
-                                </tr>
-
-                                <tr className="border-b border-slate-600/50">
-                                    <td className="table-td text-center">4</td>
-                                    <td className="table-td text-center">Saad Hasan</td>
-                                    <td className="table-td text-center">50</td>
-                                    <td className="table-td text-center">50</td>
-                                    <td className="table-td text-center">100</td>
-                                </tr>
-
-                                <tr className="border-b border-slate-600/50">
-                                    <td className="table-td text-center">4</td>
-                                    <td className="table-td text-center">Saad Hasan</td>
-                                    <td className="table-td text-center">50</td>
-                                    <td className="table-td text-center">50</td>
-                                    <td className="table-td text-center">100</td>
-                                </tr>
-
-                                <tr className="border-slate-600/50">
-                                    <td className="table-td text-center">4</td>
-                                    <td className="table-td text-center">Saad Hasan</td>
-                                    <td className="table-td text-center">50</td>
-                                    <td className="table-td text-center">50</td>
-                                    <td className="table-td text-center">100</td>
-                                </tr>
+                                {leaderBoardcontent}
                             </tbody>
                         </table>
                     </div>

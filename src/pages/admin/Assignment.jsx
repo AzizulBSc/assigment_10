@@ -4,7 +4,7 @@ import AssignmentList from "../../components/admin/assignment/AssignmentList";
 
 import { useState } from "react";
 import Modal from 'react-modal';
-import { useAssignmentAddMutation } from "../../features/assignments/assignmentsApi";
+import { useAssignmentAddMutation, useGetAssignmentsQuery } from "../../features/assignments/assignmentsApi";
 import { useGetVideosQuery } from '../../features/videos/videosApi';
 const customStyles = {
     content: {
@@ -26,9 +26,13 @@ export default function Assignment() {
     let subtitle;
     const [modalIsOpen, setIsOpen] = useState(false);
     const [assignmentAdd, { data, isLoading, error: responseError }] = useAssignmentAddMutation();
+    const { data:allAss } = useGetAssignmentsQuery();
     const { data: options, isLoading: videosLoading, isError, } = useGetVideosQuery();
-    // const [options, setOptions] = useState();
+    const [title, setTitle] = useState("");
+    const [totalMark, setTotalMark] = useState(0);
     const [selectedOption, setSelectedOption] = useState('');
+    const [video_id, setVideo_id] = useState();
+    const [video_title, setVideo_title] = useState("");
     function openModal() {
         setIsOpen(true);
     }
@@ -39,20 +43,17 @@ export default function Assignment() {
         setIsOpen(false);
     }
 
-   
-    const [title, setTitle] = useState("");
-    const [totalMark, setTotalMark] = useState(0);
-    const [video_id, setVideo_id] = useState(null);
-    const [video_title, setVideo_title] = useState("");
-    var vid=null;
-    var vTitle="";
-    function handleOptionChange(event) {
-        setSelectedOption(event.target.value);
-        const [firstWord, ...restWords] = event.target.value.split(' ');
-        vid = Number(firstWord);
-        vTitle = restWords.join(' ');
-        setVideo_id(vid);
-        setVideo_title(vTitle);
+    const handleOptionChange = (event) => {
+        const selectedOption = event.target.value;
+        const selectedOptionObject = options?.find(option => option.id == selectedOption);
+        // const foundAss = allAss?.find(ass => ass.video_id == selectedOption);
+        if(allAss?.find(ass => ass.video_id == selectedOption)){
+            alert("Assignment Available Please Select Another Video!!!");
+            return;
+        }
+        setSelectedOption(selectedOption);
+        setVideo_id(selectedOptionObject.id);
+        setVideo_title(selectedOptionObject.title);
     }
 
 
@@ -93,9 +94,9 @@ export default function Assignment() {
                         <div>
                             <label htmlFor="video_title" className="">Select Video</label>
                             <select required value={selectedOption} className="login-input rounded-b-md" onChange={handleOptionChange}>
-                            <option >Select Video</option>
+                                <option>Select Video</option>
                                 {options?.map(option => (
-                                    <option key={option.id} value={`${option.id} ${option.title}`}>{option.title}</option>
+                                    <option key={option.id} value={option.id}>{option.title}</option>
                                 ))}
                             </select>
                         </div>

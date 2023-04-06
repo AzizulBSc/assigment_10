@@ -1,8 +1,9 @@
 import React from 'react';
-import { useAssignmentEditMutation, useDeleteAssignmentMutation } from "../../../features/assignments/assignmentsApi";
+import { useAssignmentEditMutation, useDeleteAssignmentMutation, useGetAssignmentsQuery } from "../../../features/assignments/assignmentsApi";
 
 import { useState } from "react";
 import Modal from 'react-modal';
+import { useGetVideosQuery } from '../../../features/videos/videosApi';
 const customStyles = {
     content: {
         top: '50%',
@@ -22,18 +23,44 @@ Modal.setAppElement('#root');
 
 
 function AssignmentItem(assignment) {
-    const {title,video_title,totalMark,id,video_id} = assignment.assignment;
+    const {title:t,video_title:vt,totalMark:tm,id,video_id:vi} = assignment.assignment;
     const [deleteAssignmentMutation, { loading, error, data }] = useDeleteAssignmentMutation();
     const [assignmentEdit,{}] = useAssignmentEditMutation();
+    const { data:allAss } = useGetAssignmentsQuery();
+    const { data: options, isLoading: videosLoading, isError, } = useGetVideosQuery();
+   
+    //old value placed on field
+    const [selectedOption, setSelectedOption] = useState(id);
+    const [title, setTitle] = useState(t);
+    const [totalMark, setTotalMark] = useState(tm);
+    const [video_id, setVideo_id] = useState(vi);
+    const [video_title, setVideo_title] = useState(vt);
+
+
 
     const [modalIsOpen,setIsOpen] = useState(false)
+
     const handleDelete = () =>{
         deleteAssignmentMutation(id);
         alert("Delete Successfully");
         window.location.href = "/admin/assignment";
     }
 
-
+ const handleOptionChange = (event) => {
+        const selectedOption = event.target.value;
+        const selectedOptionObject = options?.find(option => option.id == selectedOption);
+        //old video selected check
+        if(id!=selectedOption){
+            //new and existing assignment video check
+        if(allAss?.find(ass => ass.video_id == selectedOption)){
+            alert("Assignment Available Please Select Another Video!!!");
+            return;
+        }
+    }
+        setSelectedOption(selectedOption);
+        setVideo_id(selectedOptionObject.id);
+        setVideo_title(selectedOptionObject.title);
+    }
 
     function openModal() {
         setIsOpen(true);
@@ -45,17 +72,14 @@ function AssignmentItem(assignment) {
         setIsOpen(false);
     }
 
-    const [title1,setTitle1] = useState(title);
-    const [video_id1,setVideo_id1] = useState(video_id);
-    const [totalMark1,setTotalMark1] = useState(totalMark);
-    const [video_title1,setVideo_title1] = useState(video_title);
+   
     const handleSubmit = (e) => {
         e.preventDefault();
-        assignmentEdit({id,title:title1,video_id:video_id1,video_title:video_title1,totalMark:totalMark1});
-        setTitle1("");
-        setVideo_id1(null);
-        setTotalMark1("");
-        setVideo_title1("");
+        assignmentEdit({id,title, video_id, video_title, totalMark});
+        setTitle("");
+        setVideo_id(null);
+        setTotalMark("");
+        setVideo_title("");
         closeModal();
         window.location.href = "/admin/assignment";
         alert("Assignment Updated Successfully!!!");
@@ -76,36 +100,31 @@ function AssignmentItem(assignment) {
                 </h2>
 
                 <form className="mt-8 space-y-6" onSubmit={handleSubmit} method="POST">
-                    <div className="rounded-md shadow-sm -space-y-px">
+                <div className="rounded-md shadow-sm -space-y-px">
                         <div>
                             <label htmlFor="title" className="">Enter Assignment Title</label>
                             <input id="title" name="title" type="text" autoComplete="title" required
-                                   className="login-input rounded-t-md" placeholder="Enter Assignment Title" value={title1}
-                                   onChange={(e) => setTitle1(e.target.value)}/>
-                        </div> <br/>
+                                className="login-input rounded-t-md" placeholder="Enter Assignment Title" value={title}
+                                onChange={(e) => setTitle(e.target.value)} />
+                        </div> <br />
                         <div>
                             <label htmlFor="video_title" className="">Select Video</label>
-                            <input id="video_title" name="video_title" type="text"
-                                   autoComplete="video_title" required className="login-input rounded-b-md"
-                                   value={video_title1}
-                                   onChange={(e) => setVideo_title1(e.target.value)}/>
+                            <select required value={selectedOption} className="login-input rounded-b-md" onChange={handleOptionChange}>
+                                {options?.map(option => (
+                                    <option key={option.id} value={option.id}>{option.title}</option>
+                                ))}
+                            </select>
                         </div>
-                        <br/>
-                        <div>
-                            <label htmlFor="video_id" className="">Select Video</label>
-                            <input id="video_id" name="video_id" type="number" autoComplete="video_id" required
-                                   className="login-input "  value={video_id1}
-                                   onChange={(e) => setVideo_id1(e.target.value)}/>
-                        </div> <br/>
+                        <br />
                         <div>
                             <label htmlFor="totalMark" >Total Mark</label>
 
                             <input id="totalMark" name="totalMark" type="number" autoComplete="current-totalMark"
-                                   required
-                                   className="login-input" placeholder="Enter Assignment Total Mark" value={totalMark1}
-                                   onChange={(e) => setTotalMark1(e.target.value)}/>
+                                required
+                                className="login-input" placeholder="Enter Assignment Total Mark" value={totalMark}
+                                onChange={(e) => setTotalMark(e.target.value)} />
                         </div>
-                        <br/>
+                        <br />
                     </div>
                     <button type="submit"
                             className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500">
