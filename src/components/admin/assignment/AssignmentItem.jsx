@@ -111,7 +111,7 @@ function AssignmentItem(assignment) {
                             <label htmlFor="video_title" className="">Select Video</label>
                             <select required value={selectedOption} className="login-input rounded-b-md" onChange={handleOptionChange}>
                                 {options?.map(option => (
-                                    <option key={option.id} value={option.id}>{option.title}</option>
+                                    <option  key={option.id} value={option.id}>{option.title}</option>
                                 ))}
                             </select>
                         </div>

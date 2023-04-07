@@ -46,7 +46,7 @@ function AssMarkItem(mark) {
     });
 
     alert("Assignment Marks Updated Successfully!!!");
-    window.location.href = "/admin/assignment/mark";
+    window.location.href = "/admin/assignmentmark";
   };
   // long value change to shortened
   const shortened_repo_link = repo_link?.substring(0, 10) + "..." + repo_link?.substring(repo_link.length - 10);

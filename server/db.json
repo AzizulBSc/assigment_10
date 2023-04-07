@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "email": "admin@lws.com",
+      "email": "admin@learnwithsumit.com",
       "password": "$2a$10$/TDPCTU28mFzKnSsW2pHSu512mpMKxLf8eiPbcTFLSNL87tbZBp3W",
       "role": "admin",
       "name": "LWS Admin",
@@ -55,6 +55,34 @@
       "name": "Azizul Hoque",
       "role": "student",
       "id": 8
+    },
+    {
+      "email": "aziz2@lws.com",
+      "password": "$2a$10$XReGFnDmOzdq15cSNicqYOm5n5irG4ZhG./r3mm7TItdx14SlmK4q",
+      "name": "aziz2",
+      "role": "student",
+      "id": 9
+    },
+    {
+      "email": "paxubugur@mailinator.com",
+      "password": "$2a$10$gFfoqMJoz7gdiahjoofpFuBiFFvv8q.t2P5G5gen0Ti2Ut/6IQOEa",
+      "name": "Portia Buck",
+      "role": "student",
+      "id": 10
+    },
+    {
+      "email": "xygo@mailinator.com",
+      "password": "$2a$10$2bJ..qRmUoJA/yqXUF.1m.miMdn1gzLIoFzITzOzZDOpoo7aNkxL2",
+      "name": "Iliana Reese",
+      "role": "student",
+      "id": 11
+    },
+    {
+      "email": "hixahyb@mailinator.com",
+      "password": "$2a$10$l7ALEaG2z5eVjb0hGbnjfeQX3NAwOq9PcrnhDgpglhWXBb3ydJpta",
+      "name": "Stella Barrett",
+      "role": "student",
+      "id": 12
     }
   ],
   "videos": [
@@ -111,6 +139,15 @@
       "duration": "3.5m",
       "createdAt": "2023-04-06T19:30:32.435Z",
       "id": 13
+    },
+    {
+      "title": "Nawal Khan | Chor Fikr Duniya Ki | New Naat 2023 | Official Video | Heera Gold",
+      "description": "3,337,280 views  Mar 10, 2023  #NawalKhan #HeeraGoldislamic #Naat Heera Media is the owner of all the content uploaded on Heera Gold channel and using our audio/video without our permission on any website, social media or any channel is a copyright infringement which is criminal offence and as per the Pakistan Copyright Ordinance Section 66, punishment of copyright violation is 3 years imprisonment and a fine of PKR - 100,000/- Heera Media won’t take any responsibility if your social media account, website or YouTube channel is shutdown due the legal proceedings against you.",
+      "url": "https://www.youtube.com/embed/1epGrjg9F1Q",
+      "views": "3.3M",
+      "duration": "4.05m",
+      "createdAt": "2023-04-07T11:15:20.062Z",
+      "id": 14
     }
   ],
   "assignments": [
@@ -162,6 +199,13 @@
       "video_title": "শিশুশিল্পীর কন্ঠে চমৎকার সংগীত - মন মাঝি খবরদার - Jubayer Ahmed || Mon Majhi Khobordar - Studio 1",
       "totalMark": "100",
       "id": 8
+    },
+    {
+      "title": "Veniam aut dolorem ",
+      "video_id": 14,
+      "video_title": "Nawal Khan | Chor Fikr Duniya Ki | New Naat 2023 | Official Video | Heera Gold",
+      "totalMark": "100",
+      "id": 9
     }
   ],
   "quizzes": [
@@ -248,6 +292,34 @@
         }
       ],
       "id": 5
+    },
+    {
+      "question": "Id totam dolore temp",
+      "video_id": 14,
+      "video_title": "Nawal Khan | Chor Fikr Duniya Ki | New Naat 2023 | Official Video | Heera Gold",
+      "options": [
+        {
+          "id": 1,
+          "option": "Vitae quo itaque del",
+          "isCorrect": "false"
+        },
+        {
+          "id": 2,
+          "option": "Voluptas dignissimos",
+          "isCorrect": "false"
+        },
+        {
+          "id": 3,
+          "option": "Aliquip incididunt r",
+          "isCorrect": "false"
+        },
+        {
+          "id": 4,
+          "option": "Sunt dolore dolore ",
+          "isCorrect": "true"
+        }
+      ],
+      "id": 6
     }
   ],
   "assignmentMark": [
@@ -366,7 +438,7 @@
       "title": "Assignment Aut aut sequi omnis ",
       "createdAt": "2023-04-06T19:52:19.409Z",
       "totalMark": 100,
-      "mark": "80",
+      "mark": "65",
       "repo_link": "Aut sit ut id saepe",
       "status": "published",
       "id": 13
@@ -378,10 +450,94 @@
       "title": "Sequi amet molestia",
       "createdAt": "2023-04-06T19:57:48.851Z",
       "totalMark": 100,
-      "mark": "60",
+      "mark": "0",
       "repo_link": "Perspiciatis minima",
       "status": "published",
       "id": 14
+    },
+    {
+      "student_id": 9,
+      "student_name": "aziz2",
+      "assignment_id": 9,
+      "title": "Veniam aut dolorem ",
+      "createdAt": "2023-04-07T11:33:38.185Z",
+      "totalMark": 100,
+      "mark": "100",
+      "repo_link": "fsdfsdfsdfsdfsd",
+      "status": "published",
+      "id": 15
+    },
+    {
+      "student_id": 9,
+      "student_name": "aziz2",
+      "assignment_id": 3,
+      "title": "Assignment 1 - Implement Debounce Function",
+      "createdAt": "2023-04-07T11:49:06.338Z",
+      "totalMark": 100,
+      "mark": "100",
+      "repo_link": "sfsdfsdfsdf",
+      "status": "published",
+      "id": 16
+    },
+    {
+      "student_id": 9,
+      "student_name": "aziz2",
+      "assignment_id": 2,
+      "title": "2 Assignment - Implement Best Practices",
+      "createdAt": "2023-04-07T11:49:18.121Z",
+      "totalMark": 100,
+      "mark": "50",
+      "repo_link": "fdfgfsdgdf",
+      "status": "published",
+      "id": 17
+    },
+    {
+      "student_id": 9,
+      "student_name": "aziz2",
+      "assignment_id": 4,
+      "title": "assignment 7",
+      "createdAt": "2023-04-07T11:49:49.043Z",
+      "totalMark": 100,
+      "mark": "50",
+      "repo_link": "ertertret",
+      "status": "published",
+      "id": 18
+    },
+    {
+      "student_id": 9,
+      "student_name": "aziz2",
+      "assignment_id": 7,
+      "title": "Sequi amet molestia",
+      "createdAt": "2023-04-07T11:49:57.437Z",
+      "totalMark": 100,
+      "mark": "54",
+      "repo_link": "dfgdfgdf",
+      "status": "published",
+      "id": 19
+    },
+    {
+      "student_id": 9,
+      "student_name": "aziz2",
+      "assignment_id": 8,
+      "title": "Assignment for new video",
+      "createdAt": "2023-04-07T11:50:09.975Z",
+      "totalMark": 100,
+      "mark": "100",
+      "repo_link": "dfgvdfgdf",
+      "status": "published",
+      "id": 20
+    },
+    {
+      "student_id": 9,
+      "student_name": "aziz2",
+      "assignment_id": 5,
+      "title": "Assignment Aut aut sequi omnis ",
+      "createdAt": "2023-04-07T11:50:42.600Z",
+      "totalMark": 100,
+      "mark": "200",
+      "repo_link": "sdfsdfsdfsd",
+      "status": "published",
+      "id": 21
     }
   ],
   "quizMark": [
@@ -430,7 +586,7 @@
       "totalCorrect": 1,
       "totalWrong": 2,
       "totalMark": 15,
-      "mark": 5,
+      "mark": 0,
       "id": 4
     },
     {
@@ -444,6 +600,30 @@
       "totalMark": 15,
       "mark": 0,
       "id": 5
+    },
+    {
+      "student_id": 9,
+      "student_name": "aziz2",
+      "video_id": 14,
+      "video_title": "Nawal Khan | Chor Fikr Duniya Ki | New Naat 2023 | Official Video | Heera Gold",
+      "totalQuiz": 1,
+      "totalCorrect": 1,
+      "totalWrong": 0,
+      "totalMark": 5,
+      "mark": 5,
+      "id": 6
+    },
+    {
+      "student_id": 9,
+      "student_name": "aziz2",
+      "video_id": 2,
+      "video_title": "#2 JavaScript Tips and Tricks - JavaScript Job Interview Questions",
+      "totalQuiz": 3,
+      "totalCorrect": 3,
+      "totalWrong": 0,
+      "totalMark": 15,
+      "mark": 15,
+      "id": 7
     }
   ]
 }

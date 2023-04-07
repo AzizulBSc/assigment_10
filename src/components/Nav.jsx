@@ -1,14 +1,17 @@
 import React from 'react';
 import { useDispatch } from "react-redux";
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import portalogo from "../assets/image/learningportal.svg";
 import { userLoggedOut } from "../features/auth/authSlice";
 export default function Nav() {
+    
+  const student = JSON.parse(localStorage.getItem("auth")).user;
     const dispatch = useDispatch();
     const logOut = ()=>{
         dispatch(userLoggedOut());
         localStorage.clear();
         alert("Log Out Successfully!");
+        window.location.href = "/";
     }
   return (
     <nav className="shadow-md">
@@ -17,7 +20,7 @@ export default function Nav() {
        </Link>
         <div className="flex items-center gap-3">
         <Link to="/student/leaderboard">Leaderboard</Link>
-            <h2 className="font-bold">Saad Hasan</h2>
+            <h2 className="font-bold">{student?.name}</h2>
             <button onClick={logOut}
                 className="flex gap-2 border border-cyan items-center px-4 py-1 rounded-full text-sm transition-all hover:bg-cyan ">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

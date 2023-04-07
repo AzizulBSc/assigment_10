@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useGetMarksQuery } from '../../../features/marks/marksApi';
 import AssMarkItem from "./AssMarkItem";
 function AssMarkList() {
@@ -9,6 +9,7 @@ function AssMarkList() {
             counter++;
         }
     }
+    
     const pending = counter;
     const total = data?.length;
     const sent = total - Number(pending);

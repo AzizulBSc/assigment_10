@@ -17,13 +17,12 @@ export default function AdminLogin() {
             setError(responseError.data);
         }
         if (data?.accessToken && data?.user) {
-            navigate("/student/player");
+            navigate("/admin/dashboard");
         }
     }, [data, responseError, navigate]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         setError("");
         login({
             email,
@@ -57,10 +56,20 @@ export default function AdminLogin() {
                     </div>
                 </div>
 
-                <div className="flex items-center justify-end">
+                {/* <div className="flex items-center justify-end">
                     <div className="text-sm">
                         <Link to="#" className="font-medium text-violet-600 hover:text-violet-500">
                             Forgot your password?
+                            </Link>
+                    </div>
+                </div> */}
+                  <div className="flex justify-between">
+                <Link to="/"  className="font-medium text-violet-600 hover:text-violet-500">
+                         Student Login
+                            </Link>
+                    <div className="text-sm">
+                        <Link to="/student/add" className="font-medium text-violet-600 hover:text-violet-500">
+                            New Student Registration
                             </Link>
                     </div>
                 </div>

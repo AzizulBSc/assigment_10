@@ -1,7 +1,8 @@
-import React, {useState} from 'react'
-import portalogo from "../../assets/image/learningportal.svg"
-import {useRegisterMutation} from "../../features/auth/authApi";
-import {useDispatch} from "react-redux";
+import React, { useState } from 'react';
+import { useDispatch } from "react-redux";
+import { Link } from 'react-router-dom';
+import portalogo from "../../assets/image/learningportal.svg";
+import { useRegisterMutation } from "../../features/auth/authApi";
 export default function StudentRegistration() {
     const [register,{ data, isLoading, error: responseError }] = useRegisterMutation();
     const  dispatch = useDispatch();
@@ -12,7 +13,7 @@ export default function StudentRegistration() {
     const [role,setRole] = useState("student");
   const handleSubmit = () => {
       if(cpassword===password){
-      dispatch(register({name,email,password,role}));
+          register({name,email,password,role});
       alert("Registered Successfully!!!");
       }
       else{
@@ -53,7 +54,16 @@ export default function StudentRegistration() {
                         placeholder="Confirm Password" value={cpassword} onChange={(e)=>setCpassword(e.target.value)} />
                 </div>
             </div>
-
+            <div className="flex justify-between">
+                <Link to="/"  className="font-medium text-violet-600 hover:text-violet-500">
+                         Student Login
+                            </Link>
+                    <div className="text-sm">
+                        <Link to="/admin/login" className="font-medium text-violet-600 hover:text-violet-500">
+                            Admin Login
+                            </Link>
+                    </div>
+                </div>
             <div>
                 <button type="submit"
                     className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-violet-600 hover:bg-violet-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-violet-500">

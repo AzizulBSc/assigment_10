@@ -1,15 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
+import { useDispatch } from "react-redux";
 import portalogo from "../assets/image/learningportal.svg";
-import {useDispatch} from "react-redux";
-import {userLoggedOut} from "../features/auth/authSlice";
+import { userLoggedOut } from "../features/auth/authSlice";
 export default function AdminNav() {
+    const student = JSON.parse(localStorage.getItem("auth")).user;
+
     const dispatch = useDispatch();
     const logOut = ()=>{
         dispatch(userLoggedOut());
         localStorage.clear();
         alert("Log Out Successfully!");
+        window.location.href = "/admin/login";
     }
   return (
     <nav class="shadow-md">
@@ -17,7 +20,8 @@ export default function AdminNav() {
     <Link to="/admin/dashboard">  <img class="h-10" src={portalogo} alt="logo" />
     </Link>
         <div class="flex items-center gap-3">
-            <h2 class="font-bold">Admin</h2>
+        <Link to="/admin/dashboard">Dashboard</Link>
+            <h2 class="font-bold">Admin {student?.name}</h2>
             <button onClick={logOut}
                 class="flex gap-2 items-center px-4 py-1 rounded-full text-sm transition-all bg-red-600 hover:bg-red-700 font-medium">
                 <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5"

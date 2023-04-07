@@ -23,10 +23,7 @@ export default function StudentLogin() {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-
         setError("");
-         console.log(email);
-         console.log(password);
         login({
             email,
             password,
@@ -61,11 +58,14 @@ export default function StudentLogin() {
                             } />
                     </div>
                 </div>
-
-                <div className="flex items-center justify-end">
+              
+                <div className="flex justify-between">
+                <Link to="/admin/login"  className="font-medium text-violet-600 hover:text-violet-500">
+                            Admin Login
+                            </Link>
                     <div className="text-sm">
                         <Link to="/student/add" className="font-medium text-violet-600 hover:text-violet-500">
-                            Create New Account
+                        New Student Registration
                             </Link>
                     </div>
                 </div>

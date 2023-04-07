@@ -42,7 +42,7 @@ export default function Dashboard() {
                         <p className="text-slate-200 mt-3 ">Quizzes</p>
                     </Link>
 
-                    <Link to="/admin/assignment/mark" className="dashboard-item-card">
+                    <Link to="/admin/assignmentmark" className="dashboard-item-card">
                         <svg viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor"
                             className="w-8 h-8 text-green-500">
                             <path stroke-linecap="round" stroke-linejoin="round"
