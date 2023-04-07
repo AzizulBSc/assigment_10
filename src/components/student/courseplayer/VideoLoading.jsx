@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 export default function VideoLoading() {
   return (
@@ -14,9 +15,9 @@ export default function VideoLoading() {
 
 
     <div clas="flex flex-col w-full">
-        <a href="#">
+    <Link to="#">
             <p className="text-slate-50 text-sm font-medium">Loading...</p>
-        </a>
+    </Link>
         <div>
             <span className="text-gray-400 text-xs mt-1">Loading...</span>
             <span className="text-gray-400 text-xs mt-1"> | </span>
@@ -35,9 +36,9 @@ export default function VideoLoading() {
 
 
     <div clas="flex flex-col w-full">
-        <a href="#">
+    <Link to="#">
             <p className="text-slate-50 text-sm font-medium">Loading...</p>
-        </a>
+            </Link>
         <div>
             <span className="text-gray-400 text-xs mt-1">Loading...</span>
             <span className="text-gray-400 text-xs mt-1"> | </span>
@@ -57,9 +58,9 @@ export default function VideoLoading() {
 
 
     <div clas="flex flex-col w-full">
-        <a href="#">
+    <Link to="#">
             <p className="text-slate-50 text-sm font-medium">Loading...</p>
-        </a>
+            </Link>
         <div>
             <span className="text-gray-400 text-xs mt-1">Loading...</span>
             <span className="text-gray-400 text-xs mt-1"> | </span>
@@ -78,9 +79,9 @@ export default function VideoLoading() {
 
 
     <div clas="flex flex-col w-full">
-        <a href="#">
+    <Link to="#">
             <p className="text-slate-50 text-sm font-medium">Loading...</p>
-        </a>
+            </Link>
         <div>
             <span className="text-gray-400 text-xs mt-1">Loading...</span>
             <span className="text-gray-400 text-xs mt-1"> | </span>

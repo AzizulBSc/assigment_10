@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import portalogo from "../../assets/image/learningportal.svg";
 import { useLoginMutation } from '../../features/auth/authApi';
 export default function AdminLogin() {
@@ -59,9 +59,9 @@ export default function AdminLogin() {
 
                 <div className="flex items-center justify-end">
                     <div className="text-sm">
-                        <a href="#" className="font-medium text-violet-600 hover:text-violet-500">
+                        <Link to="#" className="font-medium text-violet-600 hover:text-violet-500">
                             Forgot your password?
-                        </a>
+                            </Link>
                     </div>
                 </div>
 

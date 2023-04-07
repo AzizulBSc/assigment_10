@@ -1,8 +1,9 @@
-import React, {useEffect, useState} from 'react';
+/* eslint-disable react/react-in-jsx-scope */
+import React, { useState } from 'react';
 import Nav from '../../components/Nav';
 import Player from '../../components/student/courseplayer/Player';
 import Videos from '../../components/student/courseplayer/Videos';
-import {useGetVideosQuery} from "../../features/videos/videosApi";
+import { useGetVideosQuery } from "../../features/videos/videosApi";
 
 export default function CoursePlayer() {
     const {data, isLoading, isError, error} = useGetVideosQuery();

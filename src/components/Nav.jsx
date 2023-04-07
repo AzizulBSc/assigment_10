@@ -1,8 +1,8 @@
 import React from 'react';
+import { useDispatch } from "react-redux";
 import { Link } from 'react-router-dom';
 import portalogo from "../assets/image/learningportal.svg";
-import {useDispatch} from "react-redux";
-import {userLoggedIn, userLoggedOut} from "../features/auth/authSlice";
+import { userLoggedOut } from "../features/auth/authSlice";
 export default function Nav() {
     const dispatch = useDispatch();
     const logOut = ()=>{
