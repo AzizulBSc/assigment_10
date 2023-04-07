@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch } from "react-redux";
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import portalogo from "../../assets/image/learningportal.svg";
 import { useRegisterMutation } from "../../features/auth/authApi";
 export default function StudentRegistration() {
@@ -11,10 +11,13 @@ export default function StudentRegistration() {
     const [password,setPassword] = useState("");
     const [cpassword,setCpassword] = useState("");
     const [role,setRole] = useState("student");
+    
+    const navigate = useNavigate();
   const handleSubmit = () => {
       if(cpassword===password){
           register({name,email,password,role});
-      alert("Registered Successfully!!!");
+          alert("Registered Successfully!!!");
+          navigate("/student/player");
       }
       else{
           alert("Password Dose not Match!!!");
