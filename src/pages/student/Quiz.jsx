@@ -26,7 +26,7 @@ export default function Quiz() {
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(marks);
-    console.log(ans)
+    console.log(data)
   };
 
 

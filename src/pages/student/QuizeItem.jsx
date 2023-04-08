@@ -18,14 +18,21 @@ function QuizItem({ quiz, setMark ,setAns}) {
     setMark(quiz.id, newSelectedOptions);
   };
   useEffect(()=>{
+      console.log("useeffect");
+      console.log(quiz);
     if(quiz.options[0].isCorrect==true){
         setAns(quiz.id,1);
+        console.log(quiz.options[0].isCorrect);
     } if(quiz.options[1].isCorrect==true){
         setAns(quiz.id,2);
+          console.log(quiz.options[1].isCorrect);
+
     } if(quiz.options[2].isCorrect==true){
         setAns(quiz.id,3);
+          console.log(quiz.options[2].isCorrect);
     } if(quiz.options[3].isCorrect==true){
         setAns(quiz.id,4);
+          console.log(quiz.options[4].isCorrect);
     }
   },[quiz])
   return (
