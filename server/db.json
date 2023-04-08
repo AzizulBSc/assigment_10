@@ -238,6 +238,7 @@
       ]
     },
     {
+<<<<<<< HEAD
       "question": "what is correct?",
       "video_id": "2",
       "video_title": "#2 JavaScript Tips and Tricks - JavaScript Job Interview Questions",
@@ -250,20 +251,43 @@
         {
           "id": 2,
           "option": "Nulla in in ex labor",
+=======
+      "question": "What is correct?",
+      "video_id": "2",
+      "video_title": "Warning: Invalid DOM property `frameborder`. Did you mean `frameBorder`?     at iframe",
+      "options": [
+        {
+          "id": 1,
+          "option": "Tempora do vel aliqu",
+          "isCorrect": "false"
+        },
+        {
+          "id": 2,
+          "option": "Qui modi sunt commo",
+>>>>>>> 89390ce6a28549cea0d250342e783d3e4144a5a9
           "isCorrect": "false"
         },
         {
           "id": 3,
+<<<<<<< HEAD
           "option": "Doloribus ea ut aute",
+=======
+          "option": "Reiciendis culpa ev",
+>>>>>>> 89390ce6a28549cea0d250342e783d3e4144a5a9
           "isCorrect": "true"
         },
         {
           "id": 4,
+<<<<<<< HEAD
           "option": "Placeat quia dolor ",
+=======
+          "option": "Ea maiores consequat",
+>>>>>>> 89390ce6a28549cea0d250342e783d3e4144a5a9
           "isCorrect": "false"
         }
       ],
       "id": 4
+<<<<<<< HEAD
     },
     {
       "question": "Est deserunt vitae i",
@@ -320,6 +344,8 @@
         }
       ],
       "id": 6
+=======
+>>>>>>> 89390ce6a28549cea0d250342e783d3e4144a5a9
     }
   ],
   "assignmentMark": [

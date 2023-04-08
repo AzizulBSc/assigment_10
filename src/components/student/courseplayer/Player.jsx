@@ -111,7 +111,7 @@ export default function Player(playingId) {
         className="aspect-video"
         src="https://media.tenor.com/64BYBgDG41QAAAAC/loading.gif"
         title="Loading......"
-        frameborder="0"
+        frameBorder ="0"
         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
         allowfullscreen></iframe>
     );
@@ -126,8 +126,13 @@ export default function Player(playingId) {
           width="100%"
           className="aspect-video"
           src={data.url}
+<<<<<<< HEAD
           title={data.title}
           frameborder="0"
+=======
+          title="Things I wish I knew as a Junior Web Developer - Sumit Saha - BASIS SoftExpo 2023"
+          frameBorder ="0"
+>>>>>>> 89390ce6a28549cea0d250342e783d3e4144a5a9
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
           allowfullscreen></iframe>
 

@@ -19,6 +19,7 @@ function QuizItem({ quiz, setMark ,setAns}) {
     setMark(quiz.id, newSelectedOptions);
   };
   useEffect(()=>{
+<<<<<<< HEAD
     let newCO=[...co];
     if(quiz.options[0].isCorrect.toString()=="true"){
       newCO.push(1);
@@ -28,6 +29,23 @@ function QuizItem({ quiz, setMark ,setAns}) {
       newCO.push(3);
     } if(quiz.options[3].isCorrect.toString()=="true"){
       newCO.push(4);
+=======
+      console.log("useeffect");
+      console.log(quiz);
+    if(quiz.options[0].isCorrect==true){
+        setAns(quiz.id,1);
+        console.log(quiz.options[0].isCorrect);
+    } if(quiz.options[1].isCorrect==true){
+        setAns(quiz.id,2);
+          console.log(quiz.options[1].isCorrect);
+
+    } if(quiz.options[2].isCorrect==true){
+        setAns(quiz.id,3);
+          console.log(quiz.options[2].isCorrect);
+    } if(quiz.options[3].isCorrect==true){
+        setAns(quiz.id,4);
+          console.log(quiz.options[4].isCorrect);
+>>>>>>> 89390ce6a28549cea0d250342e783d3e4144a5a9
     }
     setCo(newCO);
     setAns(quiz.id,newCO);

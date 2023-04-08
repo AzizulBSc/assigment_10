@@ -30,6 +30,7 @@ export default function Quiz() {
 
   const handleSubmit = (event) => {
     event.preventDefault();
+<<<<<<< HEAD
     var totalCorrect = 0;
     let totalQuiz = 0;
     let video_title = "";
@@ -68,6 +69,10 @@ export default function Quiz() {
       alert(`Congrats You Got ${mark} out of ${totalMark}`);
       window.location.href = "/student/player";
 
+=======
+    console.log(marks);
+    console.log(data)
+>>>>>>> 89390ce6a28549cea0d250342e783d3e4144a5a9
   };
 
 

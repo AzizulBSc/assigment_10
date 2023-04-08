@@ -1,6 +1,8 @@
 
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import PrivateRoute from "./components/PrivateRoute";
+import StudentPrivateRoute from "./components/StudentPrivateRoute";
+import AdminPrivateRoute from "./components/AdminPrivateRoute";
 import PublicRoute from "./components/PublicRoute";
 import useAuthCheck from "./hooks/useAuthCheck";
 import AdminLogin from "./pages/admin/AdminLogin";
@@ -25,18 +27,26 @@ function App() {  const authChecked = useAuthCheck();
         {/* student route start */}
         <Route path="/" element={ <PublicRoute><StudentLogin/></PublicRoute> }/>
         <Route path="/student/add" element={ <PublicRoute><StudentRegistration/></PublicRoute>}/>
-        <Route path="/student/player" element={ <PrivateRoute><CoursePlayer/></PrivateRoute>}/>
-        <Route path="/student/leaderboard" element={ <PrivateRoute><Leaderboard/></PrivateRoute>}/>
-        <Route path="/student/quiz/:id" element={ <PrivateRoute><Quiz/></PrivateRoute>}/>
+        <Route path="/student/player" element={ <StudentPrivateRoute><CoursePlayer/></StudentPrivateRoute>}/>
+        <Route path="/student/leaderboard" element={ <StudentPrivateRoute><Leaderboard/></StudentPrivateRoute>}/>
+        <Route path="/student/quiz/:id" element={ <StudentPrivateRoute><Quiz/></StudentPrivateRoute>}/>
         {/* student route end */}
 
         {/* admin route start */}
         <Route path="/admin/login" element={ <PublicRoute><AdminLogin/></PublicRoute>}/>
+<<<<<<< HEAD
         <Route path="/admin/assignment" element={ <PrivateRoute><Assignment/></PrivateRoute>}/>
         <Route path="/admin/assignmentmark" element={ <PrivateRoute><AssignmentMark/></PrivateRoute>}/>
         <Route path="/admin/dashboard" element={ <PrivateRoute><Dashboard/></PrivateRoute>}/>
         <Route path="/admin/quizzes" element={ <PrivateRoute><Quizzes/></PrivateRoute>}/>
         <Route path="/admin/videos" element={ <PrivateRoute><Videos/></PrivateRoute>}/>
+=======
+        <Route path="/admin/assignment" element={ <AdminPrivateRoute><Assignment/></AdminPrivateRoute>}/>
+        <Route path="/admin/assignment/mark" element={ <AdminPrivateRoute><AssignmentMark/></AdminPrivateRoute>}/>
+        <Route path="/admin/dashboard" element={ <AdminPrivateRoute><Dashboard/></AdminPrivateRoute>}/>
+        <Route path="/admin/quizzes" element={ <AdminPrivateRoute><Quizzes/></AdminPrivateRoute>}/>
+        <Route path="/admin/videos" element={ <AdminPrivateRoute><Videos/></AdminPrivateRoute>}/>
+>>>>>>> 89390ce6a28549cea0d250342e783d3e4144a5a9
         {/* admin route End */}
        
     </Routes>
